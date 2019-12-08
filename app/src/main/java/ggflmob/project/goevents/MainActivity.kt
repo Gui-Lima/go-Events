@@ -4,6 +4,13 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager.widget.ViewPager
 import ggflmob.project.goevents.Adapters.ScreenSlidePagerAdapter
+import android.preference.PreferenceManager
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import org.osmdroid.config.Configuration
+
 
 class MainActivity : FragmentActivity() {
 
@@ -11,6 +18,10 @@ class MainActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val ctx = applicationContext
+        Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
+
         setContentView(R.layout.view_pager)
 
         mPager = findViewById(R.id.pager)
