@@ -2,19 +2,16 @@ package ggflmob.project.goevents
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
-import androidx.viewpager.widget.ViewPager
 import ggflmob.project.goevents.Adapters.ScreenSlidePagerAdapter
 import android.preference.PreferenceManager
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.view.MotionEvent
+import androidx.viewpager.widget.ViewPager
 import org.osmdroid.config.Configuration
-
 
 class MainActivity : FragmentActivity() {
 
     private lateinit var mPager: ViewPager
+    private lateinit var pagerAdapter: ScreenSlidePagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +22,7 @@ class MainActivity : FragmentActivity() {
         setContentView(R.layout.view_pager)
 
         mPager = findViewById(R.id.pager)
-
-        val pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)
+        pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)
         pagerAdapter.setContent()
         mPager.adapter = pagerAdapter
     }
@@ -38,5 +34,5 @@ class MainActivity : FragmentActivity() {
             mPager.currentItem = mPager.currentItem - 1
         }
     }
-
+    
 }

@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import ggflmob.project.goevents.Fragments.FeedFragment
-import ggflmob.project.goevents.Fragments.MapFragment
+import ggflmob.project.goevents.Fragments.EventFragment
 import ggflmob.project.goevents.Fragments.WondertradeFragment
 
 class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm){
@@ -14,7 +14,7 @@ class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(f
 
     fun setContent() {
         this.pages.add(FeedFragment())
-        this.pages.add(MapFragment())
+        this.pages.add(EventFragment())
         this.pages.add(WondertradeFragment())
     }
 
