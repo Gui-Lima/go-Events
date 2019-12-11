@@ -18,7 +18,7 @@ class EventFragment : Fragment() {
     private lateinit var rcManager:  RecyclerView.LayoutManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(ggflmob.project.goevents.R.layout.events_fragment, container, false)
+        val view = inflater.inflate(R.layout.events_fragment, container, false)
 
         rcManager = LinearLayoutManager(context)
         rcAdapter = RecyclerListViewAdapter(loadListItens())
@@ -37,6 +37,10 @@ class EventFragment : Fragment() {
         itens.add(EventListItem("oi", "oi"))
         itens.add(EventListItem("oi", "oi"))
         return itens
+    }
+
+    companion object {
+        fun newInstance(): EventFragment = EventFragment()
     }
 
 

@@ -15,4 +15,9 @@ class WondertradeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.wondertrade_fragment, container, false)
+
+
+    companion object {
+        fun newInstance(): WondertradeFragment = WondertradeFragment()
+    }
 }

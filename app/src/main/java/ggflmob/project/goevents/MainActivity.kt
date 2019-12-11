@@ -4,9 +4,20 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import ggflmob.project.goevents.Adapters.ScreenSlidePagerAdapter
 import android.preference.PreferenceManager
-import android.view.MotionEvent
+import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import org.osmdroid.config.Configuration
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import ggflmob.project.goevents.Fragments.EventFragment
+import ggflmob.project.goevents.Fragments.FeedFragment
+import ggflmob.project.goevents.Fragments.WondertradeFragment
+import java.nio.file.Files.size
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.core.view.iterator
+
 
 class MainActivity : FragmentActivity() {
 
@@ -25,7 +36,50 @@ class MainActivity : FragmentActivity() {
         pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)
         pagerAdapter.setContent()
         mPager.adapter = pagerAdapter
+        val navigation = findViewById<BottomNavigationView>(R.id.bnv_mainbottomnav)
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        mPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                var i = 0
+                navigation.menu.iterator().forEach {
+                    if (i == position) {
+                        it.setChecked(true)
+                    }
+                    i++
+                }
+            }
+        })
+
     }
+
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
+        when (menuItem.itemId) {
+            R.id.i_feed -> {
+                mPager.setCurrentItem(0 ,true)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.i_event -> {
+                mPager.setCurrentItem(1 ,true)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.i_trade -> {
+                mPager.setCurrentItem(2 ,true)
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
+
 
     override fun onBackPressed() {
         if (mPager.currentItem == 0) {
@@ -34,5 +88,5 @@ class MainActivity : FragmentActivity() {
             mPager.currentItem = mPager.currentItem - 1
         }
     }
-    
+
 }

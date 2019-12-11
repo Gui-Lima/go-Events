@@ -14,4 +14,11 @@ class FeedFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.feed_fragment, container, false)
+
+
+
+
+    companion object {
+        fun newInstance(): FeedFragment = FeedFragment()
+    }
 }

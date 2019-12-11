@@ -8,4 +8,7 @@
     <string name="mid_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tempor volutpat nisi vel commodo. Quisque bibendum malesuada tellus,</string>
     <string name="map_event_button">Map</string>
     <string name="about_event_button">About</string>
+    <string name="feed">feed</string>
+    <string name="events">events</string>
+    <string name="trade">trade</string>
 </resources>
