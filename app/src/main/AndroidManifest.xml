@@ -25,7 +25,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MapActivity">
+        <activity android:name=".MapActivity"
+            android:theme="@android:style/Theme.Translucent"
+            >
 
         </activity>
     </application>

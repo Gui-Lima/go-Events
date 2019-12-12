@@ -8,14 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import org.osmdroid.config.Configuration
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import ggflmob.project.goevents.Fragments.EventFragment
-import ggflmob.project.goevents.Fragments.FeedFragment
-import ggflmob.project.goevents.Fragments.WondertradeFragment
-import java.nio.file.Files.size
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.core.view.iterator
 
 

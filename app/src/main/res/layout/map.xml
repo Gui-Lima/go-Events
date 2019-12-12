@@ -3,13 +3,14 @@
     android:gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:layout_margin="5dp"
+    android:layout_alignParentBottom="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
         <org.osmdroid.views.MapView
             android:id="@+id/map"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         

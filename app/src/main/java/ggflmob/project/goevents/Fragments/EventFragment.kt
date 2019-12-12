@@ -1,13 +1,17 @@
 package ggflmob.project.goevents.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
 import ggflmob.project.goevents.Adapters.RecyclerListViewAdapter
+import ggflmob.project.goevents.MapActivity
 import ggflmob.project.goevents.Models.EventListItem
 import ggflmob.project.goevents.R
 
@@ -28,6 +32,12 @@ class EventFragment : Fragment() {
             adapter = rcAdapter
 
         }
+
+        val bt_map = view.findViewById<MaterialButton>(R.id.bt_map)
+        bt_map.setOnClickListener{
+            activity?.startActivity(Intent(context, MapActivity::class.java))
+        }
+
         return view
     }
 

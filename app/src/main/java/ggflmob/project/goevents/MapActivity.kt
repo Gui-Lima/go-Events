@@ -2,6 +2,7 @@ package ggflmob.project.goevents
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -11,21 +12,23 @@ class MapActivity : FragmentActivity(){
 
     private lateinit var map : MapView
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.map)
-        map = findViewById(R.id.map) as MapView
+        map = findViewById(R.id.map)
         configureMap()
+        Log.d("DEBUG", " AAAAAAAAAA")
     }
+
 
     override fun onResume() {
         super.onResume()
-        map.onResume()
+        if(::map.isInitialized) map.onResume()
     }
 
     override fun onPause(){
         super.onPause()
-        map.onPause()
+        if(::map.isInitialized)  map.onPause()
     }
 
     private fun configureMap(){
