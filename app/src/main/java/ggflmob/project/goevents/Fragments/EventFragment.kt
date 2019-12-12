@@ -5,12 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
-import ggflmob.project.goevents.Adapters.RecyclerListViewAdapter
+import ggflmob.project.goevents.Adapters.EventsListRecyclerAdapter
 import ggflmob.project.goevents.MapActivity
 import ggflmob.project.goevents.Models.EventListItem
 import ggflmob.project.goevents.R
@@ -18,14 +17,14 @@ import ggflmob.project.goevents.R
 class EventFragment : Fragment() {
 
     private lateinit var eventList: RecyclerView
-    private lateinit var rcAdapter:  RecyclerListViewAdapter
+    private lateinit var rcAdapter:  EventsListRecyclerAdapter
     private lateinit var rcManager:  RecyclerView.LayoutManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.events_fragment, container, false)
 
         rcManager = LinearLayoutManager(context)
-        rcAdapter = RecyclerListViewAdapter(loadListItens())
+        rcAdapter = EventsListRecyclerAdapter(loadListItens())
 
         eventList = view.findViewById<RecyclerView>(R.id.rv_events).apply {
             layoutManager = rcManager

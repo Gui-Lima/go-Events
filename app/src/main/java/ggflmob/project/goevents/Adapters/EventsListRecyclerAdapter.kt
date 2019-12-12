@@ -9,9 +9,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import ggflmob.project.goevents.Models.EventListItem
 import ggflmob.project.goevents.R
-import kotlinx.android.synthetic.main.event_recycler_item.view.*
 
-class RecyclerListViewAdapter(private val myDataset: ArrayList<EventListItem>) : RecyclerView.Adapter<RecyclerListViewAdapter.RecyclerListViewHolder>() {
+class EventsListRecyclerAdapter(private val myDataset: ArrayList<EventListItem>) : RecyclerView.Adapter<EventsListRecyclerAdapter.RecyclerListViewHolder>() {
 
 
     class RecyclerListViewHolder(view: View) : RecyclerView.ViewHolder(view){
