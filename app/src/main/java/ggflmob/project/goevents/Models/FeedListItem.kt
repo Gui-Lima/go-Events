@@ -11,5 +11,4 @@ class FeedListItem(title: String, body: String) {
     fun getTitle(): String { return this.title}
     fun getBody(): String {return this.body}
 
-
 }

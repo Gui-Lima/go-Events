@@ -53,6 +53,6 @@ class FeedFragment : Fragment(){
     }
 
     companion object {
-        fun newInstance(): FeedFragment = FeedFragment()
+        fun newInstance(): FeedFragment = FeedFragment  ()
     }
 }

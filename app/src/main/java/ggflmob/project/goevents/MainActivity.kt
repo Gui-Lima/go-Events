@@ -9,18 +9,22 @@ import androidx.viewpager.widget.ViewPager
 import org.osmdroid.config.Configuration
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.core.view.iterator
+import ggflmob.project.goevents.Models.User
 
 
 class MainActivity : FragmentActivity() {
 
     private lateinit var mPager: ViewPager
     private lateinit var pagerAdapter: ScreenSlidePagerAdapter
+    private lateinit var userLoggedIn : User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val ctx = applicationContext
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
+
+        userLoggedIn = intent.getSerializableExtra("UserLoggedIn") as User
 
         setContentView(R.layout.view_pager)
 
