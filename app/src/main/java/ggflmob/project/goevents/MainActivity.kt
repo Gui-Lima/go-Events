@@ -16,7 +16,6 @@ class MainActivity : FragmentActivity() {
 
     private lateinit var mPager: ViewPager
     private lateinit var pagerAdapter: ScreenSlidePagerAdapter
-    private lateinit var userLoggedIn : User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

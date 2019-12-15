@@ -4,7 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import ggflmob.project.goevents.Api.ApiClient
 import ggflmob.project.goevents.Exceptions.Errors
 import ggflmob.project.goevents.Exceptions.Resource
+import ggflmob.project.goevents.Models.Group
 import ggflmob.project.goevents.Models.User
+import ggflmob.project.goevents.data.model.DataGroup
 import ggflmob.project.goevents.data.model.DataUser
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -15,6 +17,7 @@ import java.util.*
 class ServiceRepository {
 
     val loginStatus  = MutableLiveData<Resource<User>>()
+    val createGroupStatus = MutableLiveData<Resource<Group>>()
 
     fun login(username: String, password: String){
         loginStatus.value = Resource.Loading()
@@ -58,6 +61,26 @@ class ServiceRepository {
 
         })
 
+    }
+
+    fun createGroup(group: Group){
+        val call : Call<DataGroup> = ApiClient.getClient.createGroup(group)
+        call.enqueue(object : Callback<DataGroup>{
+            override fun onFailure(call: Call<DataGroup>, t: Throwable) {
+                createGroupStatus.value = Resource.Error(Errors.RESPONSE_NOT_SUCCESSFUL)
+            }
+
+            override fun onResponse(call: Call<DataGroup>, response: Response<DataGroup>) {
+                if(response.isSuccessful){
+                    val group = Group(response.body()!!.name,response.body()!!.ownerdId, response.body()!!.ownerName)
+                    createGroupStatus.value = Resource.Complete(group)
+                }
+                else{
+                    createGroupStatus.value = Resource.Error(Errors.EMPTY_RESPONSE_FROM_API)
+                }
+            }
+
+        })
     }
 
 }

@@ -1,13 +1,11 @@
 package ggflmob.project.goevents.Repository
 
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
 import ggflmob.project.goevents.Api.ApiClient
 import ggflmob.project.goevents.Exceptions.Errors
 import ggflmob.project.goevents.Exceptions.Resource
 import ggflmob.project.goevents.Models.*
 import ggflmob.project.goevents.data.model.DataGroup
-import ggflmob.project.goevents.data.model.DataUser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,7 +33,7 @@ class ContentRepository {
                         var group = Group()
                         group.id = it.uuid
                         group.name = it.name
-                        group.ownerId = it.ownerdId
+                        group.ownerid = it.ownerdId
                         groups.add(group)
                     }
                     groupListStatus.value = Resource.Complete(groups)

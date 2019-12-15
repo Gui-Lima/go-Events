@@ -1,5 +1,6 @@
 package ggflmob.project.goevents.Api
 
+import ggflmob.project.goevents.Models.Group
 import ggflmob.project.goevents.data.model.DataGroup
 import ggflmob.project.goevents.data.model.DataUser
 import okhttp3.ResponseBody
@@ -19,5 +20,8 @@ interface FetchApi {
 
     @GET("api/user/groups/{username}")
     fun getGroupsByUsername(@Path("username") username : String) : Call<ArrayList<DataGroup>>
+
+    @POST("api/group/register")
+    fun createGroup(@Body group : Group) : Call<DataGroup>
 
 }

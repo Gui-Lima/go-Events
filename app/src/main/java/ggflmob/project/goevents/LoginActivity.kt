@@ -46,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
                     preferences.edit().putString("session", User.toJson(it.data)).apply()
                     val intent = Intent(this@LoginActivity,MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
                 is Resource.Error -> {
                     loading.visibility = View.INVISIBLE

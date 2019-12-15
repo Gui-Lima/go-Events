@@ -15,6 +15,10 @@ data class DataGroup (
 
     @Expose
     @SerializedName("ownerid")
-    val ownerdId: UUID
+    val ownerdId: UUID,
+
+    @Expose
+    @SerializedName("ownername")
+    val ownerName : String
 
     )

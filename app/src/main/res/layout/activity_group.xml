@@ -1,23 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
     android:layout_width="350dp"
-    android:layout_height="match_parent"
-    tools:context=".GroupActivity">
+    android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="@string/group_manage">
+    </TextView>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="10">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_group"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="500dp">
 
-
     </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="invisible"/>
+
+
+</FrameLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_weight="3">
 
     <Button
         android:id="@+id/btn_joingroup"
@@ -34,5 +62,8 @@
         android:text="@string/group_create">
 
     </Button>
+</LinearLayout>
+
+
 
 </LinearLayout>

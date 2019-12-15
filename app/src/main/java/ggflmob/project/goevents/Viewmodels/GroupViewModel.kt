@@ -8,10 +8,13 @@ import ggflmob.project.goevents.Repository.ServiceRepository
 
 class GroupViewModel : ViewModel() {
     private val contentRepository : ContentRepository = ContentRepository()
+    private val serviceRepository : ServiceRepository = ServiceRepository()
     private val groupStatus = contentRepository.groupListStatus
     val content = Transformations.map(groupStatus){it}
 
 
     fun getGroupsList(username : String) = this.contentRepository.getGroupList(username)
+
+    fun createGroup(group: Group) = this.serviceRepository.createGroup(group)
 
 }
