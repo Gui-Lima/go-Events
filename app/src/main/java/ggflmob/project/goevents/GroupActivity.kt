@@ -1,8 +1,10 @@
 package ggflmob.project.goevents
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
@@ -13,15 +15,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import ggflmob.project.goevents.Adapters.GroupListRecyclerAdapter
 import ggflmob.project.goevents.Dialog.CreateGroupDialog
+import ggflmob.project.goevents.Dialog.JoinGroupDialog
 import ggflmob.project.goevents.Exceptions.Resource
 import ggflmob.project.goevents.Models.Group
 import ggflmob.project.goevents.Models.GroupListItem
 import ggflmob.project.goevents.Models.User
 import ggflmob.project.goevents.Viewmodels.GroupViewModel
 
-class GroupActivity : AppCompatActivity(), CreateGroupDialog.NoticeDialogListener {
+class GroupActivity : AppCompatActivity(), CreateGroupDialog.NoticeDialogListener, JoinGroupDialog.NoticeDialogListener {
 
     private lateinit var groupList: RecyclerView
     private lateinit var rcAdapter: GroupListRecyclerAdapter
@@ -44,11 +48,11 @@ class GroupActivity : AppCompatActivity(), CreateGroupDialog.NoticeDialogListene
         createBtn = findViewById(R.id.btn_creategroup)
         loading = findViewById(R.id.loading)
 
-        var preferences = this.getSharedPreferences("ggflmob.project.goevents", Context.MODE_PRIVATE)
+        val preferences = this.getSharedPreferences("ggflmob.project.goevents", Context.MODE_PRIVATE)
         userLoggedIn = User.fromJson(preferences.getString("session","")!!)
 
         rcManager = LinearLayoutManager(this)
-        rcAdapter = GroupListRecyclerAdapter(groupLists)
+        rcAdapter = GroupListRecyclerAdapter(groupLists, { groupListItem : GroupListItem -> groupItemClicked(groupListItem) })
 
         groupList.apply {
             layoutManager = rcManager
@@ -62,15 +66,11 @@ class GroupActivity : AppCompatActivity(), CreateGroupDialog.NoticeDialogListene
                 is Resource.Complete -> {
                     loading.visibility = View.INVISIBLE
                     val groupListItem = ArrayList<GroupListItem>()
-                    it.data.forEach{
-                        val groupItem = GroupListItem(it.name!!, it.ownername!!)
+                    it.data.forEach{groupMember ->
+                        val groupItem = GroupListItem(groupMember.name!!, groupMember.ownername!!, groupMember.id!!, groupMember.ownerid!!)
                         groupListItem.add(groupItem)
                     }
                     rcAdapter.updateDataSet(groupListItem)
-                }
-                is Resource.Error -> {
-                    loading.visibility = View.INVISIBLE
-                    Toast.makeText(this@GroupActivity, "Ops, something went wrong", Toast.LENGTH_SHORT).show()
                 }
                 is Resource.Loading -> {
                     loading.visibility = View.VISIBLE
@@ -82,12 +82,14 @@ class GroupActivity : AppCompatActivity(), CreateGroupDialog.NoticeDialogListene
 
 
         joinBtn.setOnClickListener {
-
+            showJoinGroupDialog()
         }
 
         createBtn.setOnClickListener {
             showCreateGroupDialog()
         }
+
+
     }
 
 
@@ -96,15 +98,29 @@ class GroupActivity : AppCompatActivity(), CreateGroupDialog.NoticeDialogListene
         dialog.show(supportFragmentManager, "GroupDialogFragment")
     }
 
+    fun showJoinGroupDialog(){
+        val dialog = JoinGroupDialog()
+        dialog.show(supportFragmentManager, "GroupDialogFragment")
+    }
+
     override fun onDialogPositiveClick(dialog: DialogFragment) {
         if (dialog is CreateGroupDialog ){
             val group = Group(dialog.groupNameString, userLoggedIn.id!!, userLoggedIn.name!!)
             groupViewModel.createGroup(group)
         }
+
+        if(dialog is JoinGroupDialog){
+            groupViewModel.joinGroup(userLoggedIn.username!!, dialog.groupNameString)
+        }
     }
 
     override fun onDialogNegativeClick(dialog: DialogFragment) {}
 
-
+    private fun groupItemClicked(groupItem : GroupListItem){
+        var group = Group(groupItem.getId(), groupItem.getName(), groupItem.getOwnerId() , groupItem.getOwnerName())
+        val intent = Intent(this@GroupActivity,GroupProfileActivity::class.java)
+        intent.putExtra("Group", Group.toJson(group))
+        startActivity(intent)
+    }
 
 }

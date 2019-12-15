@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ggflmob.project.goevents.Models.EventListItem
 import ggflmob.project.goevents.R
 
-class EventsListRecyclerAdapter(private val myDataset: ArrayList<EventListItem>) : RecyclerView.Adapter<EventsListRecyclerAdapter.RecyclerListViewHolder>() {
+class EventsListRecyclerAdapter(private var myDataset: ArrayList<EventListItem>) : RecyclerView.Adapter<EventsListRecyclerAdapter.RecyclerListViewHolder>() {
 
 
     class RecyclerListViewHolder(view: View) : RecyclerView.ViewHolder(view){
@@ -39,5 +39,10 @@ class EventsListRecyclerAdapter(private val myDataset: ArrayList<EventListItem>)
         }
 
         override fun getItemCount() = myDataset.size
+
+        fun updateItemList(newItens : ArrayList<EventListItem>){
+            this.myDataset = newItens
+            notifyDataSetChanged()
+        }
 
 }

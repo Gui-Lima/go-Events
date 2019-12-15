@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import ggflmob.project.goevents.Api.ApiClient
 import ggflmob.project.goevents.Exceptions.Errors
 import ggflmob.project.goevents.Exceptions.Resource
+import ggflmob.project.goevents.Models.Event
 import ggflmob.project.goevents.Models.Group
 import ggflmob.project.goevents.Models.User
 import ggflmob.project.goevents.data.model.DataGroup
@@ -18,6 +19,7 @@ class ServiceRepository {
 
     val loginStatus  = MutableLiveData<Resource<User>>()
     val createGroupStatus = MutableLiveData<Resource<Group>>()
+    val createEventStatus = MutableLiveData<Resource<Event>>()
 
     fun login(username: String, password: String){
         loginStatus.value = Resource.Loading()
@@ -79,6 +81,44 @@ class ServiceRepository {
                     createGroupStatus.value = Resource.Error(Errors.EMPTY_RESPONSE_FROM_API)
                 }
             }
+
+        })
+    }
+
+    fun joinGroup(username : String, groupName : String){
+        val call : Call<DataGroup> = ApiClient.getClient.joinGroup(username, groupName)
+        call.enqueue(object: Callback<DataGroup>{
+            override fun onFailure(call: Call<DataGroup>, t: Throwable) {
+                createGroupStatus.value = Resource.Error(Errors.RESPONSE_NOT_SUCCESSFUL)
+            }
+
+            override fun onResponse(call: Call<DataGroup>, response: Response<DataGroup>) {
+                if(response.isSuccessful){
+                    val group = Group(response.body()!!.name,response.body()!!.ownerdId, response.body()!!.ownerName)
+                    createGroupStatus.value = Resource.Complete(group)
+                }
+                else{
+                    createGroupStatus.value = Resource.Error(Errors.EMPTY_RESPONSE_FROM_API)
+                }
+            }
+
+        })
+    }
+
+    fun createEvent(event : Event){
+        val call : Call<ResponseBody> = ApiClient.getClient.createEvent(event)
+        call.enqueue(object : Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                createEventStatus.value = Resource.Error(Errors.ERROR_COMMUNICATING_WITH_API)
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if(response.isSuccessful){
+                    createEventStatus.value = Resource.Complete(event)
+                }
+                createEventStatus.value = Resource.Error(Errors.EMPTY_RESPONSE_FROM_API)
+            }
+
 
         })
     }

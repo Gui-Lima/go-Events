@@ -1,5 +1,6 @@
 package ggflmob.project.goevents.Fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,9 @@ class FeedFragment : Fragment(){
 
         rcManager = LinearLayoutManager(context)
         rcAdapter = FeedListRecyclerAdapter(loadListItens())
+
+        var preferences = this.activity!!.getSharedPreferences("ggflmob.project.goevents", Context.MODE_PRIVATE)
+        userLoggedIn = User.fromJson(preferences.getString("session","")!!)
 
         eventList = view.findViewById<RecyclerView>(R.id.rv_feed).apply {
             layoutManager = rcManager

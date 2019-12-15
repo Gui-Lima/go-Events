@@ -8,12 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import ggflmob.project.goevents.Models.GroupListItem
 import ggflmob.project.goevents.R
 
-class GroupListRecyclerAdapter(private var myDataSet: ArrayList<GroupListItem>) :  RecyclerView.Adapter<GroupListRecyclerAdapter.RecyclerListViewHolder>() {
+class GroupListRecyclerAdapter(private var myDataSet: ArrayList<GroupListItem>, val clickListener: (GroupListItem) -> Unit) :  RecyclerView.Adapter<GroupListRecyclerAdapter.RecyclerListViewHolder>() {
+
 
 
     class RecyclerListViewHolder(view: View) : RecyclerView.ViewHolder(view){
         var name : TextView? = null
         var ownerName : TextView? = null
+
+        fun bind(part: GroupListItem, clickListener: (GroupListItem) -> Unit) {
+            itemView.setOnClickListener { clickListener(part)}
+        }
     }
 
     override fun onCreateViewHolder(
@@ -24,7 +29,7 @@ class GroupListRecyclerAdapter(private var myDataSet: ArrayList<GroupListItem>) 
             .inflate(R.layout.group_recycler_item, parent, false) as View
 
         var recHolder = GroupListRecyclerAdapter.RecyclerListViewHolder(groupItem)
-        recHolder.ownerName = groupItem.findViewById(R.id.tv_ownerid)
+        recHolder.ownerName = groupItem.findViewById(R.id.tv_ownername)
         recHolder.name = groupItem.findViewById(R.id.tv_name)
 
         return recHolder
@@ -40,6 +45,7 @@ class GroupListRecyclerAdapter(private var myDataSet: ArrayList<GroupListItem>) 
     ) {
         holder.name?.text = this.myDataSet[position].getName()
         holder.ownerName?.text = this.myDataSet[position].getOwnerName()
+        (holder as RecyclerListViewHolder).bind(myDataSet[position], clickListener)
     }
 
     fun updateDataSet(dataset : ArrayList<GroupListItem>){

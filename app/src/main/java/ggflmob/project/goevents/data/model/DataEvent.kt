@@ -24,5 +24,9 @@ data class DataEvent(
 
     @Expose
     @SerializedName("group_id")
-    val group_id: UUID
+    val group_id: UUID,
+
+    @Expose
+    @SerializedName("group_name")
+    val group_name: String
 )

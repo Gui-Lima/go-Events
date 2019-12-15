@@ -39,7 +39,7 @@
                 android:orientation="vertical"
                 android:paddingTop="5dp">
                 <TextView
-                    android:id="@+id/tv_feedtitle"
+                    android:id="@+id/tv_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
@@ -47,7 +47,7 @@
                     android:textColor="#000"
                     android:textSize="14sp" />
                 <TextView
-                    android:id="@+id/tv_ownerid"
+                    android:id="@+id/tv_ownername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
