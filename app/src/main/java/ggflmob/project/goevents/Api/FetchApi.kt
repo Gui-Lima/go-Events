@@ -1,5 +1,6 @@
 package ggflmob.project.goevents.Api
 
+import ggflmob.project.goevents.data.model.DataGroup
 import ggflmob.project.goevents.data.model.DataUser
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -15,5 +16,8 @@ interface FetchApi {
 
     @POST("api/login/register")
     fun register(@Body user : DataUser) : Call<ResponseBody>
+
+    @GET("api/user/groups/{username}")
+    fun getGroupsByUsername(@Path("username") username : String) : Call<ArrayList<DataGroup>>
 
 }

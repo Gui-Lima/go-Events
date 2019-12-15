@@ -12,6 +12,7 @@
     * Think of interface
 * General
     * Think about group infraestructure
+    * Save instances when changing landscape
 
 
 ## The api

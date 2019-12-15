@@ -11,6 +11,7 @@ import ggflmob.project.goevents.Adapters.EventsListRecyclerAdapter
 import ggflmob.project.goevents.Adapters.FeedListRecyclerAdapter
 import ggflmob.project.goevents.Models.EventListItem
 import ggflmob.project.goevents.Models.FeedListItem
+import ggflmob.project.goevents.Models.User
 import ggflmob.project.goevents.R
 
 class FeedFragment : Fragment(){
@@ -18,6 +19,7 @@ class FeedFragment : Fragment(){
     private lateinit var eventList: RecyclerView
     private lateinit var rcAdapter:  FeedListRecyclerAdapter
     private lateinit var rcManager:  RecyclerView.LayoutManager
+    lateinit var userLoggedIn : User
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

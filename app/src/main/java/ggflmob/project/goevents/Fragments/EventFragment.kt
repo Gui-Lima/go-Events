@@ -12,6 +12,7 @@ import com.google.android.material.button.MaterialButton
 import ggflmob.project.goevents.Adapters.EventsListRecyclerAdapter
 import ggflmob.project.goevents.MapActivity
 import ggflmob.project.goevents.Models.EventListItem
+import ggflmob.project.goevents.Models.User
 import ggflmob.project.goevents.R
 
 class EventFragment : Fragment() {
@@ -19,6 +20,7 @@ class EventFragment : Fragment() {
     private lateinit var eventList: RecyclerView
     private lateinit var rcAdapter:  EventsListRecyclerAdapter
     private lateinit var rcManager:  RecyclerView.LayoutManager
+    lateinit var userLoggedIn : User
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.events_fragment, container, false)

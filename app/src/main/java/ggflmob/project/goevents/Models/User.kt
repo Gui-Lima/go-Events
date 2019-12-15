@@ -1,4 +1,5 @@
 package ggflmob.project.goevents.Models
+import com.google.gson.Gson
 import java.io.Serializable
 import java.util.ArrayList
 import java.util.UUID
@@ -34,4 +35,17 @@ class User : Serializable{
     }
 
     constructor() {}
+
+    companion object{
+        fun toJson(user: User): String {
+            var gson : Gson = Gson()
+            var stringedUser = gson.toJson(user)
+            return stringedUser
+        }
+        fun fromJson(user : String) : User{
+            var gson : Gson = Gson()
+            var user = gson.fromJson(user, User::class.java)
+            return user
+        }
+    }
 }

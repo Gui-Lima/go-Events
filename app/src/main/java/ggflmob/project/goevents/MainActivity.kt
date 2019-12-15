@@ -24,16 +24,17 @@ class MainActivity : FragmentActivity() {
         val ctx = applicationContext
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
 
-        userLoggedIn = intent.getSerializableExtra("UserLoggedIn") as User
-
         setContentView(R.layout.view_pager)
 
         mPager = findViewById(R.id.pager)
         pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)
+
         pagerAdapter.setContent()
+
         mPager.adapter = pagerAdapter
         val navigation = findViewById<BottomNavigationView>(R.id.bnv_mainbottomnav)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
         mPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
             override fun onPageScrolled(
                 position: Int,
