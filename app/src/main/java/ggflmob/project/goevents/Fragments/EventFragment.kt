@@ -14,14 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import ggflmob.project.goevents.Adapters.EventsListRecyclerAdapter
-import ggflmob.project.goevents.Exceptions.Resource
+import ggflmob.project.goevents.Resources.Resource
 import ggflmob.project.goevents.MapActivity
 import ggflmob.project.goevents.Models.EventListItem
-import ggflmob.project.goevents.Models.GroupListItem
 import ggflmob.project.goevents.Models.User
 import ggflmob.project.goevents.R
 import ggflmob.project.goevents.Viewmodels.EventViewModel
-import ggflmob.project.goevents.Viewmodels.GroupViewModel
 
 class EventFragment : Fragment() {
 

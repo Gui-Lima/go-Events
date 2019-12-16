@@ -2,8 +2,8 @@ package ggflmob.project.goevents.Repository
 
 import androidx.lifecycle.MutableLiveData
 import ggflmob.project.goevents.Api.ApiClient
-import ggflmob.project.goevents.Exceptions.Errors
-import ggflmob.project.goevents.Exceptions.Resource
+import ggflmob.project.goevents.Resources.Errors
+import ggflmob.project.goevents.Resources.Resource
 import ggflmob.project.goevents.Models.Event
 import ggflmob.project.goevents.Models.Group
 import ggflmob.project.goevents.Models.User

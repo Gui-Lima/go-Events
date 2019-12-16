@@ -45,16 +45,9 @@ class FeedFragment : Fragment(){
 
     private fun loadListItens() : ArrayList<FeedListItem>{
         var itens = ArrayList<FeedListItem>()
-        itens.add(FeedListItem("oi", "oi"))
-        itens.add(FeedListItem("oi", "oi"))
-        itens.add(FeedListItem("oi", "oi"))
-        itens.add(FeedListItem("oi", "oi"))
-        itens.add(FeedListItem("oi", "oi"))
-        itens.add(FeedListItem("oi", "oi"))
-        itens.add(FeedListItem("oi", "oi"))
-        itens.add(FeedListItem("oi", "oi"))
-        itens.add(FeedListItem("oi", "oi"))
-        itens.add(FeedListItem("oi", "oi"))
+        itens.add(FeedListItem("Noticia1", "Algo aconteceu em algum grupo1"))
+        itens.add(FeedListItem("Noticia2", "Algo aconteceu em algum grupo1"))
+        itens.add(FeedListItem("Noticia3", "Algo aconteceu em algum grupo1"))
         return itens
     }
 

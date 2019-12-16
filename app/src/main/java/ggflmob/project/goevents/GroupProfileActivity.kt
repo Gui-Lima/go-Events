@@ -11,11 +11,9 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ggflmob.project.goevents.Dialog.CreateEventDialog
-import ggflmob.project.goevents.Dialog.CreateGroupDialog
-import ggflmob.project.goevents.Exceptions.Resource
+import ggflmob.project.goevents.Resources.Resource
 import ggflmob.project.goevents.Models.Event
 import ggflmob.project.goevents.Models.Group
-import ggflmob.project.goevents.Models.GroupListItem
 import ggflmob.project.goevents.Models.User
 import ggflmob.project.goevents.Viewmodels.GroupViewModel
 

@@ -2,7 +2,6 @@ package ggflmob.project.goevents
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -12,7 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
-import ggflmob.project.goevents.Exceptions.Resource
+import ggflmob.project.goevents.Resources.Resource
 import ggflmob.project.goevents.Models.User
 import ggflmob.project.goevents.Viewmodels.LoginViewModel
 
