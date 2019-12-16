@@ -68,12 +68,8 @@ class MainActivity : FragmentActivity() {
                 mPager.setCurrentItem(1 ,true)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.i_trade -> {
-                mPager.setCurrentItem(2 ,true)
-                return@OnNavigationItemSelectedListener true
-            }
             R.id.i_profile -> {
-                mPager.setCurrentItem(3, true)
+                mPager.setCurrentItem(2, true)
                 return@OnNavigationItemSelectedListener true
             }
         }

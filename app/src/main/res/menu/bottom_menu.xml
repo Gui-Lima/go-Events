@@ -17,13 +17,6 @@
     </item>
 
     <item
-        android:id="@+id/i_trade"
-        android:title="@string/trade"
-        android:checked="false"
-        android:icon="@drawable/ic_card_pokemon1">
-    </item>
-
-    <item
         android:id="@+id/i_profile"
         android:title="profile"
         android:checked="false"
