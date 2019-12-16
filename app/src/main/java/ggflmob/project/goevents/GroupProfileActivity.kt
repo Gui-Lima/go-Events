@@ -7,8 +7,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import ggflmob.project.goevents.Dialog.CreateEventDialog
+import ggflmob.project.goevents.Dialog.CreateGroupDialog
 import ggflmob.project.goevents.Exceptions.Resource
 import ggflmob.project.goevents.Models.Event
 import ggflmob.project.goevents.Models.Group
@@ -16,7 +19,7 @@ import ggflmob.project.goevents.Models.GroupListItem
 import ggflmob.project.goevents.Models.User
 import ggflmob.project.goevents.Viewmodels.GroupViewModel
 
-class GroupProfileActivity : AppCompatActivity() {
+class GroupProfileActivity : AppCompatActivity(), CreateEventDialog.NoticeDialogListener {
 
     lateinit var groupName : TextView
     lateinit var ownerName : TextView
@@ -58,8 +61,24 @@ class GroupProfileActivity : AppCompatActivity() {
         })
 
         btnCreateEvent.setOnClickListener {
-            val event = Event("new Event", 10, 10, group.id!!, group.name!!)
+            showCreateGroupDialog()
+
+        }
+    }
+
+    fun showCreateGroupDialog() {
+        val dialog = CreateEventDialog()
+        dialog.show(supportFragmentManager, "EventDialogFragment")
+    }
+
+    override fun onDialogNegativeClick(dialog: DialogFragment) {}
+
+    override fun onDialogPositiveClick(dialog: DialogFragment) {
+        if (dialog is CreateEventDialog){
+            val event = Event(dialog.eventNameString , 10, 10, group.id!!, group.name!!)
             groupProfileViewModel.createEvent(event)
         }
     }
+
+
 }
